@@ -1,7 +1,7 @@
 <h1 align='center'>LeetPandas</h1>
-
-<img src="https://github.com/nabin2004/LeetPandas/assets/107109731/bd15bcc7-abfc-420f-9a70-59d80d2c9f77" alt="Image" width="1000" height="400">
 LeetPandas is a data science platform similar to LeetCode, designed to provide challenges and exercises tailored specifically for data science enthusiasts. It offers a wide range of questions focusing on Python, NumPy, Pandas, Matplotlib, Seaborn, linear regression, probability, linear algebra, and SQL.
+<img src="https://github.com/nabin2004/LeetPandas/assets/107109731/bd15bcc7-abfc-420f-9a70-59d80d2c9f77" alt="Image" width="1000" height="400">
+
 
 ## Key Features
 
