@@ -1,0 +1,72 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead th {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 15px;
+    font-weight: bold;
+    color: #6c757d;
+    border-bottom: 2px solid #e9ecef;
+}
+
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+    text-align: left;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #17a2b8;
+}
+
+.icon-lock {
+    color: #adb5bd;
+}
+
+.difficulty-easy {
+    color: #28a745;
+}
+
+.difficulty-medium {
+    color: #ffc107;
+}
+
+.difficulty-hard {
+    color: #dc3545;
+}
+
+.solution-icon {
+    font-size: 18px;
+    color: #6f42c1;
+}
+
+.status-completed {
+    color: #28a745;
+}
+
+.status-pending {
+    color: #17a2b8;
+}
+
+.frequency-lock {
+    text-align: center;
+}
