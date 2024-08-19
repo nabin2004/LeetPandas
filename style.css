@@ -1,0 +1,34 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 0.1px solid #EBEBEB;
+}
+
+
+
+.navlogo img, .right-side img{
+    height: 40px;
+    object-fit: cover;
+}
+
+.navlogo p{
+    font-size: 20px;
+}
+
+.nav-items ul{
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+    color: #6c6666;
+    font-family:'Courier New', Courier, monospace;
+    font:bolder;
+}
+
+.nav-items li:hover{
+    color: black;
+}
+
+.right-side img{
+    border-radius: 50%;
+    object-fit: cover;
+}
