@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "KNN", "label": "KNN", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Model", "label": "Model", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "F1Score", "label": "F1Score", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Metric", "label": "Metric", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "LinearRegression", "label": "LinearRegression", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "MSE", "label": "MSE", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Accuracy", "label": "Accuracy", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Linearity", "label": "Linearity", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Assumption", "label": "Assumption", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "DistanceMetric", "label": "DistanceMetric", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "SVM", "label": "SVM", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "LargeMarginSeparation", "label": "LargeMarginSeparation", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Intercept", "label": "Intercept", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Coefficient", "label": "Coefficient", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Regression", "label": "Regression", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Parameter", "label": "Parameter", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Classification", "label": "Classification", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Kernel", "label": "Kernel", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Gamma", "label": "Gamma", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "C", "label": "C", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Recall", "label": "Recall", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "R2", "label": "R2", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "KValue", "label": "KValue", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Precision", "label": "Precision", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Locality", "label": "Locality", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "uses", "label": "uses", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Property", "label": "Property", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "assumes", "label": "assumes", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "evaluatedBy", "label": "evaluatedBy", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Task", "label": "Task", "shape": "dot"}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "usedFor", "label": "usedFor", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"from": "KNN", "label": "type", "to": "Model"}, {"from": "F1Score", "label": "type", "to": "Metric"}, {"from": "LinearRegression", "label": "evaluatedBy", "to": "MSE"}, {"from": "KNN", "label": "evaluatedBy", "to": "Accuracy"}, {"from": "Linearity", "label": "type", "to": "Assumption"}, {"from": "KNN", "label": "uses", "to": "DistanceMetric"}, {"from": "SVM", "label": "assumes", "to": "LargeMarginSeparation"}, {"from": "LinearRegression", "label": "uses", "to": "Intercept"}, {"from": "LinearRegression", "label": "uses", "to": "Coefficient"}, {"from": "KNN", "label": "usedFor", "to": "Regression"}, {"from": "DistanceMetric", "label": "type", "to": "Parameter"}, {"from": "KNN", "label": "usedFor", "to": "Classification"}, {"from": "SVM", "label": "uses", "to": "Kernel"}, {"from": "SVM", "label": "uses", "to": "Gamma"}, {"from": "SVM", "label": "uses", "to": "C"}, {"from": "LinearRegression", "label": "assumes", "to": "Linearity"}, {"from": "C", "label": "type", "to": "Parameter"}, {"from": "SVM", "label": "evaluatedBy", "to": "Recall"}, {"from": "LinearRegression", "label": "evaluatedBy", "to": "R2"}, {"from": "KValue", "label": "type", "to": "Parameter"}, {"from": "SVM", "label": "evaluatedBy", "to": "Accuracy"}, {"from": "SVM", "label": "evaluatedBy", "to": "Precision"}, {"from": "SVM", "label": "evaluatedBy", "to": "F1Score"}, {"from": "SVM", "label": "type", "to": "Model"}, {"from": "KNN", "label": "assumes", "to": "Locality"}, {"from": "LargeMarginSeparation", "label": "type", "to": "Assumption"}, {"from": "Intercept", "label": "type", "to": "Parameter"}, {"from": "LinearRegression", "label": "type", "to": "Model"}, {"from": "LinearRegression", "label": "usedFor", "to": "Regression"}, {"from": "R2", "label": "type", "to": "Metric"}, {"from": "uses", "label": "type", "to": "Property"}, {"from": "Locality", "label": "type", "to": "Assumption"}, {"from": "Kernel", "label": "type", "to": "Parameter"}, {"from": "assumes", "label": "type", "to": "Property"}, {"from": "evaluatedBy", "label": "type", "to": "Property"}, {"from": "SVM", "label": "usedFor", "to": "Classification"}, {"from": "Recall", "label": "type", "to": "Metric"}, {"from": "Precision", "label": "type", "to": "Metric"}, {"from": "Accuracy", "label": "type", "to": "Metric"}, {"from": "Regression", "label": "type", "to": "Task"}, {"from": "KNN", "label": "uses", "to": "KValue"}, {"from": "usedFor", "label": "type", "to": "Property"}, {"from": "Classification", "label": "type", "to": "Task"}, {"from": "Coefficient", "label": "type", "to": "Parameter"}, {"from": "Gamma", "label": "type", "to": "Parameter"}, {"from": "MSE", "label": "type", "to": "Metric"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

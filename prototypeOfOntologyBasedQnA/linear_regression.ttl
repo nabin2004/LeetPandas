@@ -1,0 +1,67 @@
+@prefix : <http://leetpandas.org/ml#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# === Models ===
+:LinearRegression rdf:type :Model .
+:KNN rdf:type :Model .
+:SVM rdf:type :Model .
+
+# === Parameters ===
+:Coefficient rdf:type :Parameter .
+:Intercept rdf:type :Parameter .
+:KValue rdf:type :Parameter .
+:Kernel rdf:type :Parameter .
+:C rdf:type :Parameter .
+:Gamma rdf:type :Parameter .
+:DistanceMetric rdf:type :Parameter .
+
+# === Metrics ===
+:MSE rdf:type :Metric .
+:R2 rdf:type :Metric .
+:Accuracy rdf:type :Metric .
+:Precision rdf:type :Metric .
+:Recall rdf:type :Metric .
+:F1Score rdf:type :Metric .
+
+# === Properties ===
+:uses rdf:type rdf:Property .
+:evaluatedBy rdf:type rdf:Property .
+:usedFor rdf:type rdf:Property .
+:assumes rdf:type rdf:Property .
+
+# === Linear Regression Relationships ===
+:LinearRegression :uses :Coefficient .
+:LinearRegression :uses :Intercept .
+:LinearRegression :evaluatedBy :MSE .
+:LinearRegression :evaluatedBy :R2 .
+:LinearRegression :usedFor :Regression .
+
+# === KNN Relationships ===
+:KNN :uses :KValue .
+:KNN :uses :DistanceMetric .
+:KNN :evaluatedBy :Accuracy .
+:KNN :usedFor :Classification .
+:KNN :usedFor :Regression .
+
+# === SVM Relationships ===
+:SVM :uses :Kernel .
+:SVM :uses :C .
+:SVM :uses :Gamma .
+:SVM :evaluatedBy :Accuracy .
+:SVM :evaluatedBy :Precision .
+:SVM :evaluatedBy :Recall .
+:SVM :evaluatedBy :F1Score .
+:SVM :usedFor :Classification .
+
+# === Learning Assumptions (just for example) ===
+:LinearRegression :assumes :Linearity .
+:SVM :assumes :LargeMarginSeparation .
+:KNN :assumes :Locality .
+
+# === Additional Concepts ===
+:Regression rdf:type :Task .
+:Classification rdf:type :Task .
+:Linearity rdf:type :Assumption .
+:LargeMarginSeparation rdf:type :Assumption .
+:Locality rdf:type :Assumption .
